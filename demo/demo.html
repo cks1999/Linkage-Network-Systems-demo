@@ -8,8 +8,75 @@
     <link rel="stylesheet" href="style/bootstrap/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/style.css">
 </head>
-<body>
+<body style="font-size: 18px;">
     <div id="graph-panel" class="wrapper-panel">
+    </div>
+    <div class="url-list">
+            <div class="panel panel-info">
+                <div class="panel-heading "  style="font-size: 20px;background-color: #9F9F9F;text-align: center;font-weight: bold;">
+<!--                    <h4 class="panel-title" style="font-size: 20px;background-color: #eeeeee">-->
+
+                        Knowledge Package Search Results
+
+<!--                    </h4>-->
+                </div>
+            </div>
+        <table id="demo-tables" class="demo-table ">
+            <tr>
+                <td>Type</td>
+                <td>Name</td>
+                <td>Resources</td>
+                <td>      </td>
+            </tr>
+            <tr>
+                <td>DescribedByPaper</td>
+                <td>An automatic approach for land-change detection and land updates based on integrated NDVI timing analysis and the CVAPS method with GEE support</td>
+                <td>https://www.researchgate.net/</td>
+                <td>
+                    <a href="https://www.researchgate.net/publication/329344038_An_automatic_approach_for_land-change_detection_and_land_updates_based_on_integrated_NDVI_timing_analysis_and_the_CVAPS_method_with_GEE_support" data-type="data2" class="demo-data" >Access</a>
+                </td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td>Land use change detection model based on NDVI time series analysis</td>
+                <td>https://www.chinageoss.cn/</td>
+                <td>
+                    <a href="https://www.chinageoss.cn/knowledgehub/model/modelDetail/639af8f0f64eb66545fa020a" data-type="data2" class="demo-data" >Access</a>
+                </td>
+            </tr>
+            <tr>
+                <td>InPutData</td>
+                <td>1 km grid land use data of Beijing 2000</td>
+                <td>http://www.geodata.cn/</td>
+                <td>
+                    <a href="http://www.geodata.cn/data/datadetails.html?dataguid=360631&docId=13257" data-type="data2" class="demo-data" >Access</a>
+                </td>
+            </tr>
+            <tr>
+                <td>InPutData</td>
+                <td>NDVI data of Beijing 2000</td>
+                <td>https://chinageoss.cn/</td>
+                <td>
+                    <a href="https://chinageoss.cn/datasharing/datasetDetails/63908259e4e3044051785043" data-type="data2" class="demo-data" >Access</a>
+                </td>
+            </tr>
+            <tr>
+                <td>InPutData</td>
+                <td>Landsat5 surface reflectance data of Beijing 2000</td>
+                <td>https://chinageoss.cn/</td>
+                <td>
+                    <a href="https://chinageoss.cn/datasharing/datasetDetails/6391a040e4e304405178506c" data-type="data2" class="demo-data" >Access</a>
+                </td>
+            </tr>
+            <tr>
+                <td>IllustratedByDocument</td>
+                <td>Land use change detection document based on NDVI time series analysis</td>
+                <td>https://chinageoss.cn/</td>
+                <td>
+                    <a href="https://www.chinageoss.cn/knowledgehub/model/modelDetail/639af8f0f64eb66545fa020a" data-type="data2" class="demo-data" >Access</a>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="left-toolbar">
@@ -30,7 +97,7 @@
         </ul>
     </div>
 
-    <div class="right-side">
+    <div class="right-side" style="overflow: auto; /* 添加滚动条 */">
         <div id="side-bar-btn" class="side-bar-btn right">
             <a href="javascript:void(0);"><i class="fa fa-arrow-circle-right"></i><a>
         </div>
@@ -39,7 +106,7 @@
                 <div class="panel-heading " role="tab" id="headingOne">
                     <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            SPARQL查询
+                            SPARQL Search
                         </a>
                     </h4>
                 </div>
@@ -51,102 +118,52 @@
                         </div>
                         <div style="margin-top:5px;text-align: center;">
                             <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
-                                <i class="fa fa-play"></i>&nbsp;运行检索
+                                <i class="fa fa-play"></i>&nbsp;Add attributes
                             </button>
                             <button id="layoutParam-reset" type="button" class="btn btn-sm btn-info" style="width:80px;">
-                                <i class="fa fa-gear"></i>&nbsp;重置
+                                <i class="fa fa-gear"></i>&nbsp;Reset
                             </button>
                         </div>
 
                         <div class="tiptext">
-                            note: 注意事项。
+                            note:
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="panel panel-info">
-                <div class="panel-heading " role="tab" id="headingOne">
+                <div class="panel-heading " role="tab" id="headingTwo">
                     <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            模型检索条件
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                            Model Search Criteria
                         </a>
                     </h4>
                 </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
                         <div id="layout-panel"></div>
                         <table id="cluster-params" class="small-table">
-                            <tr>
-                                <td>属性</td>
-                                <td>值</td>
+                            <tr style="text-align: center;">
+                                <td>Attributes</td>
+                                <td>Value</td>
                             </tr>
 
                         </table>
-                        
-                        <div style="margin-top:5px;text-align: center;">
-                            <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
-                                <i class="fa fa-play"></i>&nbsp;增加检索条件
-                            </button>
-                        </div>
+
 
                         <div style="margin-top:5px;text-align: center;">
                             <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
-                                <i class="fa fa-play"></i>&nbsp;运行检索
+                                <i class="fa fa-play"></i>&nbsp;Add attributes
                             </button>
                             <button id="layoutParam-reset" type="button" class="btn btn-sm btn-info" style="width:80px;">
-                                <i class="fa fa-gear"></i>&nbsp;重置
+                                <i class="fa fa-gear"></i>&nbsp;Reset
                             </button>
                         </div>
 
-                        <div class="tiptext">
-                            Note:注意事项
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            数据集检索条件
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                        <div id="cluster-panel"></div>
-                        <div class="params-warp">
-                            <table id="cluster-params" class="small-table">
-                                <tr>
-                                    <td>聚类效果</td>
-                                    <td>
-                                        <select id="cluster-effect" class="small-selector param">
-                                            <option value="1">仅颜色区分</option>
-                                            <option value="2">颜色+区域</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>区域重叠</td>
-                                    <td>
-                                        <select id="cluster-avoidlap" class="small-selector param">
-                                            <option value="true">允许</option>
-                                            <option value="false">不允许</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="longbtn">
-                            <button id="clusterBtn" type="button" class="btn btn-sm btn-success" style="width: 100%;;">
-                                <i class="fa fa-play"></i>&nbsp;应用聚类算法
-                            </button>
-                        </div>
-                        <div class="tiptext">
-                            注：聚类算法提供两种效果，仅颜色区分不同群组，颜色加圆形区域，使用区域区分时可以设置群组区域不重叠。
-                        </div>
+<!--                        <div class="tiptext">-->
+<!--                            Note:-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -154,136 +171,120 @@
             <div class="panel panel-info">
                 <div class="panel-heading" role="tab" id="headingThree">
                     <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            文章检索条件
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                            Dataset Search Criteria
                         </a>
                     </h4>
                 </div>
-                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
+                        <div id="layout-panel"></div>
                         <table id="cluster-params" class="small-table">
                             <tr>
-                                <td>节点形状</td>
-                                <td>
-                                    <select id="node-shape" class="small-selector param">
-                                        <option value="circle">圆形</option>
-                                        <option value="rect">正方形</option>
-                                        <option value="ellipse">椭圆</option>
-                                        <option value="triangle">三角形</option>
-                                        <option value="star">五角星</option>
-                                        <option value="polygon">六边形</option>
-                                        <option value="text">文字</option>
-                                    </select>
-                                </td>
+                                <td>Attributes</td>
+                                <td>Value</td>
                             </tr>
-                            <tr>
-                                <td>节点标签</td>
-                                <td>
-                                    <select id="node-label" class="small-selector param">
-                                        <option value="false">不显示</option>
-                                        <option value="true">显示</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>标签包裹</td>
-                                <td>
-                                    <select id="node-label-wrap" class="small-selector param">
-                                        <option value="false">否</option>
-                                        <option value="true">是</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>标签位置</td>
-                                <td>
-                                    <select id="node-label-pos" class="small-selector param">
-                                        <option value="Bottom_Center">底部</option>
-                                        <option value="Middle_Center">居中</option>
-                                        <option value="Top_Center">顶部</option>
-                                        <option value="Middle_Right">右边</option>
-                                        <option value="Middle_Left">左边</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>连线类型</td>
-                                <td>
-                                    <select id="link-type" class="small-selector param">
-                                        <option value="direct">直线</option>
-                                        <option value="curver">曲线</option>
-                                        <option value="vdirect">直虚线</option>
-                                        <option value="vcurver">曲虚线</option>
-                                        <option value="vlink">纵向折线</option>
-                                        <option value="hlink">横向折线</option>
-                                        <option value="vbezier">纵向曲线</option>
-                                        <option value="hbezier">横向曲线</option>
-                                        <option value="bezier">贝塞尔曲线</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>连线样式</td>
-                                <td>
-                                    <select id="link-dashed" class="small-selector param">
-                                        <option value="false">实线</option>
-                                        <option value="true">虚线</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>连线标签</td>
-                                <td>
-                                    <select id="link-label" class="small-selector param">
-                                        <option value="true">显示</option>
-                                        <option value="false">不显示</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>连线箭头</td>
-                                <td>
-                                    <select id="link-arrow" class="small-selector param">
-                                        <option value="true">显示</option>
-                                        <option value="false">不显示</option>
-                                    </select>
-                                </td>
-                            </tr>
+
                         </table>
+
+
+                        <div style="margin-top:5px;text-align: center;">
+                            <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
+                                <i class="fa fa-play"></i>&nbsp;Add attributes
+                            </button>
+                            <button id="layoutParam-reset" type="button" class="btn btn-sm btn-info" style="width:80px;">
+                                <i class="fa fa-gear"></i>&nbsp;Reset
+                            </button>
+                        </div>
+
+<!--                        <div class="tiptext">-->
+<!--                            Note:-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
 
             <div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="headingFour">
+                <div class="panel-heading" role="tab" id="headingFive">
                     <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                            Paper Search Criteria
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div id="layout-panel"></div>
+                        <table id="cluster-params" class="small-table">
+                            <tr>
+                                <td>Attributes</td>
+                                <td>Value</td>
+                            </tr>
+
+                        </table>
+
+
+
+                        <div style="margin-top:5px;text-align: center;">
+                            <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
+                                <i class="fa fa-play"></i>&nbsp;Add attributes
+                            </button>
+                            <button id="layoutParam-reset" type="button" class="btn btn-sm btn-info" style="width:80px;">
+                                <i class="fa fa-gear"></i>&nbsp;Reset
+                            </button>
+                        </div>
+
+<!--                        <div class="tiptext">-->
+<!--                            Note:-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="headingSix">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
                             软件检索条件
                         </a>
                     </h4>
                 </div>
-                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-                        <div class="params-warp">
-                            <table id="demo-datas" class="small-table">
-                                <tr>
-                                    <td>企业投资图谱</td>
-                                    <td>
-                                       <a href="javascript:;" data-type="data1" class="demo-data" >选择</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>红楼梦关系图谱</td>
-                                    <td>
-                                        <a href="javascript:;" data-type="data2" class="demo-data" >选择</a>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div id="layout-panel"></div>
+                        <table id="cluster-params" class="small-table">
+                            <tr>
+                                <td>Attributes</td>
+                                <td>Value</td>
+                            </tr>
+
+                        </table>
+
+
+                        <div style="margin-top:5px;text-align: center;">
+                            <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
+                                <i class="fa fa-play"></i>&nbsp;Add attributes
+                            </button>
+                            <button id="layoutParam-reset" type="button" class="btn btn-sm btn-info" style="width:80px;">
+                                <i class="fa fa-gear"></i>&nbsp;Reset
+                            </button>
                         </div>
+
+<!--                        <div class="tiptext">-->
+<!--                            Note:-->
+<!--                        </div>-->
                     </div>
-                </div> 
+                </div>
             </div>
 
+            <div style="margin-top:5px;text-align: center;">
+                <button id="runLayotBtn" type="button" class="btn btn-sm btn-success" style="width:130px;">
+                    <i class="fa fa-play"></i>&nbsp;Search
+                </button>
+                <button id="layoutParam-reset" type="button" class="btn btn-sm btn-info" style="width:80px;">
+                    <i class="fa fa-gear"></i>&nbsp;Reset All
+                </button>
+            </div>
             <!-- <div class="panel panel-info">
                 <div class="panel-heading" role="tab" id="headingFive">
                     <h4 class="panel-title">
@@ -366,7 +367,7 @@
                                     <td>节点操作</td>
                                     <td>
                                         <select id="nodeopts" class="small-selector param">
-                                            <option value="">--请选择--</option>
+                                            <option value="">--请Access--</option>
                                             <option value="selectAll">全选</option>
                                             <option value="reverseSelect">反选</option>
                                             <option value="showSelected">显示选中</option>
@@ -383,7 +384,7 @@
                                     <td>连线操作</td>
                                     <td>
                                         <select id="linkopts" class="small-selector param">
-                                            <option value="">--请选择--</option>
+                                            <option value="">--请Access--</option>
                                             <option value="showAllLink">显示连线</option>
                                             <option value="hideAllLink">隐藏连线</option>
                                         </select>
