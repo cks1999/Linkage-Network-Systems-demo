@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport">
+		<title>GraphVis | 企业图谱</title>
+		<script src="js/log.js"></script>
+        <script src="js/graphvis.min.js"></script>
+        <script src="js/data.js"></script>
+
+        <style type="text/css">
+            .page {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                background-color: hsla(216, 100%, 96%, 1);
+                background-image: radial-gradient(at 13% 5%, hsla(214, 100%, 37%, 0.29) 0px, transparent 50%), radial-gradient(at 100% 100%, hsla(254, 66%, 56%, 0.11) 0px, transparent 50%), radial-gradient(at 0% 100%, hsla(355, 100%, 93%, 0) 0px, transparent 50%), radial-gradient(at 61% 52%, hsla(227, 64%, 46%, 0.05) 0px, transparent 50%), radial-gradient(at 88% 12%, hsla(227, 70%, 49%, 0.1) 0px, transparent 50%), radial-gradient(at 100% 37%, hsla(254, 68%, 56%, 0) 0px, transparent 50%);
+            }
+            .content{
+                margin: 30px 30px 30px 150px;
+                height:calc(100vh - 62px);
+                background-color:#fff;
+                border-radius: 10px;
+                box-shadow: 1px 1px 5px 1px #90c2f5;
+                border: 1px solid #7bbaf7;
+            }
+            #graph-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            .left-nav{
+                float: left;
+                width:160px;
+            }
+
+            .nav-button{
+                width: 150px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 13px;
+                text-align: center;
+                background-color: #5cabea;
+                color: #ebf3ff;
+                border: 1px solid #569afa;
+                border-radius: 15px ;
+                margin: 5px 0px 5px -12px;
+                cursor: pointer;
+            }
+
+            .nav-button.node-text{
+                background-color: #0db463;
+            }
+
+            .nav-button.link-text{
+                background-color: #06a8bd;
+            }
+
+            .nav-button.alink-text{
+                background-color: #c0a809;
+            }
+
+            .nav-button:hover{
+                width: 160px;
+                border: 1px solid #2666cc;
+                color:#fff;
+            }
+
+            .tip{
+                float: left;
+                font-size: 12px;
+                border: 1px solid #a6bfee;
+                background: #e5f8dd;
+                padding: 10px;
+                width: 115px;
+                color: #3d9614;
+                border-radius: 5px;
+                margin-top:5px;
+            }
+    
+        </style>
+	</head>
+	<body class="page">
+        <div class="left-nav">
+            <div id="fastForce" class="nav-button layout-btn">快速弹性布局</div>
+            <div id="grid" class="nav-button layout-btn">网格布局</div>
+            <div id="circle" class="nav-button layout-btn">环形布局</div>
+
+            <div id="showNodeText" class="nav-button node-text">显示节点文字</div>
+            <div id="hideNodeText" class="nav-button node-text">隐藏节点文字</div>
+
+            <div id="showLinkText" class="nav-button link-text">显示连线文字</div>
+            <div id="hideLinkText" class="nav-button link-text">隐藏连线文字</div>
+
+            <div id="showOtherPage" class="nav-button alink-text">去看包裹文字效果</div>
+
+            <div class="tip">
+                点击上方的按钮可切换布局效果。</br>
+                双击节点可查看以该节点为中心的分层网络结构。</br>
+                隐藏文字后布局动画更流畅。
+            </div>
+        </div>
+        <div class="legend" data-v-6426f0ba=""><div data-v-6426f0ba=""><span class="fa iconfont icon-luyin" style="color:rgb(255, 158, 0);" data-v-6426f0ba=""></span><span data-v-6426f0ba="">当前节点</span></div><div data-v-6426f0ba=""><span class="fa iconfont icon-luyin" style="color:rgb(78, 162, 240);" data-v-6426f0ba=""></span><span data-v-6426f0ba="">企业</span></div><div data-v-6426f0ba=""><span class="fa iconfont icon-luyin" style="color:rgb(255, 96, 96);" data-v-6426f0ba=""></span><span data-v-6426f0ba="">人员</span></div><div data-v-6426f0ba=""><span class="fa iconfont icon-jiantou_xiangyou" style="color:rgb(255, 96, 96);" data-v-6426f0ba=""></span><span data-v-6426f0ba="">投资</span></div><div data-v-6426f0ba=""><span class="fa iconfont icon-jiantou_xiangyou" style="color:rgb(78, 162, 240);" data-v-6426f0ba=""></span><span data-v-6426f0ba="">任职</span></div></div>
+        <div class="content">
+            <div id="graph-container"></div>
+        </div>
+	</body>
+
+	<script type="text/javascript">
+
+		let graphVis = new GraphVis({
+			container:document.getElementById('graph-container'),
+			licenseKey:'licenseKey',
+			config: {
+                node:{
+                    label:{
+                        show:true,
+                        color:'100,100,100',
+                        font: 'normal 13px KaiTi'
+                    },
+                    shape:'circle',
+                    size:60,
+                    borderWidth:0,
+                    borderColor:'255,255,255',
+                    selected:{
+                        borderWidth: 5,
+                        borderColor:'80,100,240',
+                        showShadow: false, //是否展示阴影
+                        shadowColor: '80,100,240', //选中是的阴影颜色
+                        shadowBlur: 20 //阴影的范围大小
+                    }
+                },
+				link:{
+                    label:{
+                        show:false,
+                        color:'120,120,120',
+                        font: 'normal 11px Arial',
+                        background:'250,250,250'
+                    },
+					lineType:'direct',
+					lineWidth:2,
+					color: '200,200,200',
+                    showArrow:true,
+                    selected:{
+                        color:'80,100,240'
+                    }
+				},
+                highLightNeiber: true, //相邻节点高度标志
+			}
+		});
+
+		graphVis.setZoomRange([0.1,4]); //放区间
+        graphVis.setShowDetailScale(0.4); //显示细节文字的最小比例
+       
+        // graphVis.registEventListener('link','mouseOver',function(event,link){
+		// 	link.showlabel = true;
+		// });
+
+        // graphVis.registEventListener('link','mouseOut',function(event,link){
+		// 	link.showlabel = false;
+		// });
+
+        graphVis.registEventListener('node','dblClick',function(event,node){
+			runRadialLayout(node.id);
+		});
+
+
+        //配置节点类型显示样式(支持大小，颜色，形状，图片的统一配置)
+        graphVis.reConfigNodeCluster({
+            'main' : {size:80,color:'240,50,50',borderColor:'255, 135, 94',selectedBorderColor:'255, 120, 80',image:'images/company.png'},
+            'ctrler':{size:60,color:'80,220,120',borderColor:'80,245,100',selectedBorderColor:'80,200,80',image:'images/boss.png'},
+            'ent': {size: 60,color:'78,162,240',borderColor:'108, 192, 255',image:'images/sub.png'}
+        });
+
+
+		//添加图数据
+		graphVis.addGraph(demoData);
+        //graphVis.zoomFit();
+		
+		runLayout();
+
+
+        document.querySelectorAll('.layout-btn').forEach(btn => {
+            btn.addEventListener('click',function(event){
+                runLayout(event.target.id);
+            });
+        });
+
+        document.querySelectorAll('.node-text').forEach(btn => {
+            btn.addEventListener('click',function(event){
+                showOrHideNodeText(event.target.id);
+            });
+        });
+
+        document.querySelectorAll('.link-text').forEach(btn => {
+            btn.addEventListener('click',function(event){
+                showOrHideLinkText(event.target.id);
+            });
+        });
+
+        document.getElementById('showOtherPage').addEventListener('click',function(event){
+            window.location.href = './wrapText.html';
+        });
+        
+
+        function showOrHideNodeText(flag){
+            let show = flag == 'showNodeText'?true :false;
+            graphVis.nodes.forEach(node => {
+                node.showlabel = show;
+            });
+            graphVis.refreshView();
+        }
+
+        function showOrHideLinkText(flag){
+            let show = flag == 'showLinkText'?true :false;
+            graphVis.links.forEach(link => {
+                link.showlabel = show;
+            });
+            graphVis.refreshView();
+        }
+
+
+        //执行布局
+        function runLayout(layoutType='fastForce'){
+            let layoutConfig = {
+                'friction': 0.9,  //排斥力
+                'linkDistance': 50, // 连线长度
+                'linkStrength': 0.03, //连线强度
+                'charge': -200,  //吸引力
+                'gravity': 0.008, // 中心引力
+            };
+			if(layoutType == 'grid'){
+                layoutConfig = {nodeSpace: 100, layerSpace: 100};
+            }
+            graphVis.excuteLocalLayout(layoutType,layoutConfig, function () {
+                graphVis.zoomFit();
+            });
+        }
+
+
+	</script>
+</html>

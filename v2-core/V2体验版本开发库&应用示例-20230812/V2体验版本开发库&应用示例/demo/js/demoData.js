@@ -1,0 +1,208 @@
+var treeData = {
+	"name":"人工智能",
+	"weight":"12000",
+	"children":[
+		{
+			"name":"计算机科学与技术",
+			"weight":5488,
+			"children":[
+				{
+					"name":"专家系统",
+					"weight":"2418"
+				},
+				{
+					"name":"神经网络",
+					"weight":"1071"
+				},
+				{
+					"name":"知识库",
+					"weight":"541"
+				},
+				{
+					"name":"机器学习",
+					"weight":"511"
+				},
+				{
+					"name":"人工智能技术",
+					"weight":"491"
+				},
+				{
+					"name":"模式识别",
+					"weight":"456"
+				}
+			]
+		},
+		{
+			"name":"机械工程",
+			"weight":2127,
+			"children":[
+				{
+					"name":"机器人",
+					"weight":"712"
+				},
+				{
+					"name":"故障诊断",
+					"weight":"517"
+				},
+				{
+					"name":"智能机器人",
+					"weight":"341"
+				},
+				{
+					"name":"知识工程",
+					"weight":"228"
+				},
+				{
+					"name":"计算机辅助设计",
+					"weight":"215"
+				},
+				{
+					"name":"工业机器人",
+					"weight":"114"
+				}
+			]
+		},
+		{
+			"name":"教育学",
+			"weight":1641,
+			"children":[
+				{
+					"name":"计算机",
+					"weight":"655"
+				},
+				{
+					"name":"计算机科学",
+					"weight":"324"
+				},
+				{
+					"name":"信息技术",
+					"weight":"192"
+				},
+				{
+					"name":"计算机应用",
+					"weight":"188"
+				},
+				{
+					"name":"计算机技术",
+					"weight":"165"
+				},
+				{
+					"name":"计算机辅助教学",
+					"weight":"117"
+				}
+			]
+		},
+		{
+			"name":"建筑学",
+			"weight":565,
+			"children":[
+				{
+					"name":"电气自动化",
+					"weight":"145"
+				},
+				{
+					"name":"电气自动化控制",
+					"weight":"117"
+				},
+				{
+					"name":"电气工程",
+					"weight":"104"
+				},
+				{
+					"name":"过程控制",
+					"weight":"76"
+				},
+				{
+					"name":"自动化控制",
+					"weight":"62"
+				},
+				{
+					"name":"电气工程自动化",
+					"weight":"61"
+				}
+			]
+		},
+		{
+			"name":"控制科学与工程",
+			"weight":553,
+			"children":[
+				{
+					"name":"模糊控制",
+					"weight":"173"
+				},
+				{
+					"name":"控制系统",
+					"weight":"133"
+				},
+				{
+					"name":"计算机控制",
+					"weight":"75"
+				},
+				{
+					"name":"模糊推理",
+					"weight":"64"
+				},
+				{
+					"name":"模糊神经网络",
+					"weight":"55"
+				},
+				{
+					"name":"神经元网络",
+					"weight":"53"
+				}
+			]
+		},
+		{
+			"name":"法学",
+			"weight":464,
+			"children":[
+				{
+					"name":"程序设计",
+					"weight":"108"
+				},
+				{
+					"name":"发展趋势",
+					"weight":"106"
+				},
+				{
+					"name":"搜索引擎",
+					"weight":"98"
+				},
+				{
+					"name":"解决问题",
+					"weight":"90"
+				},
+				{
+					"name":"网络安全",
+					"weight":"62"
+				}
+			]
+		}
+	]
+};
+
+var graphData = {nodes:[],links:[]};
+
+function traverse(data) {
+    graphData.nodes.push({
+        id:data.name,
+        label:data.name
+    });
+
+    (data.children ||[]).forEach(child => {
+        graphData.links.push({
+            source: data.name,
+            target: child.name
+        });
+
+        traverse(child);
+    });
+}
+
+
+traverse(treeData);
+
+//console.log(graphData);
+
+
+
